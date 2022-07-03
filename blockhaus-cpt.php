@@ -163,7 +163,7 @@ function create_project_cpt() {
 		'label' => __( 'Project', 'blockhaus' ),
 		'description' => __( '', 'blockhaus' ),
 		'labels' => $labels,
-		'menu_icon' => 'dashicons-media-document',
+		'menu_icon' => 'dashicons-clipboard',
 		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'author'),
 		'taxonomies' => array(),
 		'public' => true,
