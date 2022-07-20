@@ -269,6 +269,70 @@ function create_resource_cpt() {
 }
 add_action( 'init', 'create_resource_cpt', 0 );
 
+// Register Custom Post Type Podcast
+function create_podcast_cpt() {
+
+	$labels = array(
+		'name' => _x( 'Podcasts', 'Post Theme General Name', 'blockhaus' ),
+		'singular_name' => _x( 'Podcast', 'Post Theme Singular Name', 'blockhaus' ),
+		'menu_name' => _x( 'Podcasts', 'Admin Menu text', 'blockhaus' ),
+		'name_admin_bar' => _x( 'Podcast', 'Add New on Toolbar', 'blockhaus' ),
+		'archives' => __( 'Podcast Archives', 'blockhaus' ),
+		'attributes' => __( 'Podcast Attributes', 'blockhaus' ),
+		'parent_item_colon' => __( 'Parent Podcast:', 'blockhaus' ),
+		'all_items' => __( 'All Podcasts', 'blockhaus' ),
+		'add_new_item' => __( 'Add New Podcast', 'blockhaus' ),
+		'add_new' => __( 'Add New', 'blockhaus' ),
+		'new_item' => __( 'New Podcast', 'blockhaus' ),
+		'edit_item' => __( 'Edit Podcast', 'blockhaus' ),
+		'update_item' => __( 'Update Podcast', 'blockhaus' ),
+		'view_item' => __( 'View Podcast', 'blockhaus' ),
+		'view_items' => __( 'View Podcasts', 'blockhaus' ),
+		'search_items' => __( 'Search Podcast', 'blockhaus' ),
+		'not_found' => __( 'Not found', 'blockhaus' ),
+		'not_found_in_trash' => __( 'Not found in Trash', 'blockhaus' ),
+		'featured_image' => __( 'Featured Image', 'blockhaus' ),
+		'set_featured_image' => __( 'Set featured image', 'blockhaus' ),
+		'remove_featured_image' => __( 'Remove featured image', 'blockhaus' ),
+		'use_featured_image' => __( 'Use as featured image', 'blockhaus' ),
+		'insert_into_item' => __( 'Insert into Podcast', 'blockhaus' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this Podcast', 'blockhaus' ),
+		'items_list' => __( 'Podcasts list', 'blockhaus' ),
+		'items_list_navigation' => __( 'Podcasts list navigation', 'blockhaus' ),
+		'filter_items_list' => __( 'Filter Podcasts list', 'blockhaus' ),
+	);
+	$rewrite = array(
+		'slug' => 'podcasts',
+		'with_front' => true,
+		'pages' => true,
+		'feeds' => true,
+	);
+	$args = array(
+		'label' => __( 'Podcast', 'blockhaus' ),
+		'description' => __( '', 'blockhaus' ),
+		'labels' => $labels,
+		'menu_icon' => 'dashicons-format-audio',
+		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'author'),
+		'taxonomies' => array(),
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'menu_position' => 5,
+		'show_in_admin_bar' => true,
+		'show_in_nav_menus' => true,
+		'can_export' => true,
+		'has_archive' => true,
+		'hierarchical' => false,
+		'exclude_from_search' => false,
+		'show_in_rest' => true,
+		'publicly_queryable' => true,
+		'capability_type' => 'post',
+		'rewrite' => $rewrite,
+	);
+	register_post_type( 'podcast', $args );
+
+}
+add_action( 'init', 'create_podcast_cpt', 0 );
 
 // Register Taxonomy Story Theme
 function create_content_authors_tax() {
@@ -306,7 +370,7 @@ function create_content_authors_tax() {
 		'show_in_rest' => true,
 		'rewrite' => $rewrite,
 	);
-	register_taxonomy( 'content_authors', array('post', 'story', 'resource', 'project'), $args );
+	register_taxonomy( 'content_authors', array('post', 'story', 'resource', 'project', 'podcast'), $args );
 
 }
 add_action( 'init', 'create_content_authors_tax' );
